@@ -27,7 +27,6 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class ProductController {
 	
 	@Autowired
