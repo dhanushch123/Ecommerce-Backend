@@ -1,11 +1,8 @@
 package com.enterprise.models;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
-//AuthResponse.java
-@AllArgsConstructor
-@NoArgsConstructor
+
+
 public class AuthResponse {
  private String token;
  private String role;
@@ -14,6 +11,8 @@ public class AuthResponse {
      this.token = token;
      this.role = role;
  }
+ 
+ public AuthResponse() {}
 
  public String getToken() {
 	return token;
