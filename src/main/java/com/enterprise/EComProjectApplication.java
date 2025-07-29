@@ -2,20 +2,14 @@ package com.enterprise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import io.github.cdimascio.dotenv.Dotenv;
+
 
 @SpringBootApplication
 public class EComProjectApplication {
 
 	public static void main(String[] args) {
 		
-		Dotenv dotenv = Dotenv.configure()
-			    .directory("./")    // explicitly tells it to look in the current directory
-			    .filename(".env")   // optional, since it's default
-			    .load();
-		dotenv.entries().forEach(entry -> {
-	        System.setProperty(entry.getKey(), entry.getValue());
-	    });
+		
 
 	    
 		SpringApplication.run(EComProjectApplication.class, args);
