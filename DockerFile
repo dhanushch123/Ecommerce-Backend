@@ -1,10 +1,21 @@
-FROM openjdk:17-jdk-slim
-
-LABEL maintainer="dhanush@example.com"
+# Step 1: Use Maven to build the JAR
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-COPY target/E-ComProject-0.0.1-SNAPSHOT.jar app.jar
+# Copy all files for building
+COPY . .
 
+# Build the project and skip tests (optional)
+RUN mvn clean package -DskipTests
+
+# Step 2: Use a slim JDK image to run the JAR
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+# Copy only the built JAR from the previous image
+COPY --from=build /app/target/E-ComProject-0.0.1-SNAPSHOT.jar app.jar
+
+# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
