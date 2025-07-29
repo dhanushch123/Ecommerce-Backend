@@ -1,14 +1,10 @@
-# Step 1: Use a base image with Java
 FROM openjdk:17-jdk-slim
 
-# Step 2: Add metadata (optional)
-LABEL maintainer="yourname@example.com"
+LABEL maintainer="dhanush@example.com"
 
-# Step 3: Set the working directory inside the container
 WORKDIR /app
 
-# Step 4: Copy your JAR file into the image
-COPY target/your-app-name.jar app.jar
+COPY target/E-ComProject-0.0.1-SNAPSHOT.jar app.jar
 
-# Step 5: Run the JAR file
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
