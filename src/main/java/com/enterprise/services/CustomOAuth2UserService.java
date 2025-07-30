@@ -42,7 +42,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 		        genderEnum = Gender.OTHER;
 		    }
 		}
-		
+		System.out.println("In OAuth2 Service");
 		if(user == null) {
 			// we store these details in db
 			Users newUser = new Users();
@@ -54,6 +54,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 			newUser.setRoles(roles);
 			newUser.setUsername(name);
 			repo.save(newUser);
+			System.out.println(newUser);
 			
 				
 		}
