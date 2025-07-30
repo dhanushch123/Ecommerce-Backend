@@ -1,6 +1,8 @@
 package com.enterprise.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,9 +39,27 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler{
 		
 		OAuth2User authUser = (OAuth2User) authentication.getPrincipal();
 		
+		System.out.println(authUser);
+		
 		String email = authUser.getAttribute("email");
+		String name = authUser.getAttribute("name");
+		
+
 		Users user = repo.findByEmail(email);
 		String role = "USER";
+		
+		if(user == null) {
+			// we store these details in db
+			Users newUser = new Users();
+			newUser.setEmail(email);
+			newUser.setName(name);
+			List<String> roles = new ArrayList<>();
+			roles.add("ROLE_USER");
+			newUser.setRoles(roles);
+			newUser.setUsername(name);
+			repo.save(newUser);
+			user = newUser;
+		}
 		if(user.getRoles().contains("ROLE_ADMIN")) {
 			role = "ADMIN";
 		}

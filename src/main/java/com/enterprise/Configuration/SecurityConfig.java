@@ -29,20 +29,31 @@ import com.enterprise.services.CustomOAuth2UserService;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	@Autowired
+
 	AuthenticationConfiguration authConfig;
 	
-	@Autowired
+
 	UserDetailsService userDetailsService;
 	
-	@Autowired
+
 	JwtFilter jwtFilter;
 	
-	@Autowired
 	CustomOAuth2UserService oAuth2UserService;
 	
-	@Autowired
+
 	CustomOAuth2SuccessHandler successHandler;
+	
+
+	public SecurityConfig(AuthenticationConfiguration authConfig, UserDetailsService userDetailsService,
+			JwtFilter jwtFilter, CustomOAuth2UserService oAuth2UserService, CustomOAuth2SuccessHandler successHandler) {
+		this.authConfig = authConfig;
+		this.userDetailsService = userDetailsService;
+		this.jwtFilter = jwtFilter;
+		this.oAuth2UserService = oAuth2UserService;
+		this.successHandler = successHandler;
+	}
+
+
 	
 	
 	
